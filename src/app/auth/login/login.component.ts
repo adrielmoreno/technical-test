@@ -30,8 +30,10 @@ export class LoginComponent implements OnInit {
 
   onLogin(): void {
     this.authService.logIn(this.formLogin.value).subscribe(res => {
-      // TODO: pasar los errores al form
+      this.authService.isLogin = true;
       this.router.navigateByUrl('/users')
+    }, error => {
+        console.log(error);
     })
   }
 }

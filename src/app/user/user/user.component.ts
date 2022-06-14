@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  @Input('userItem')
+  user: any;
+
+  @Output() onIdDel: EventEmitter<string> = new EventEmitter();
+
+  constructor(private route: Router) { }
 
   ngOnInit(): void {
+  }
+
+  onDeleteId() {
+    this.onIdDel.emit(this.user.id);
   }
 
 }

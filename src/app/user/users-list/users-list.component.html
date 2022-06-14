@@ -1,1 +1,6 @@
-<p>users-list works!</p>
+<app-nav></app-nav>
+<div class="list">
+  <div class="card" *ngFor="let user of userList ">
+    <app-user [userItem]="user" (onIdDel)="onDelete($event)"></app-user>
+</div>
+</div>

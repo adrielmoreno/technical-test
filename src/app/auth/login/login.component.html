@@ -1,13 +1,25 @@
-<div class="container">
-  <div class="login">
-    <div class="login-triangle"></div>
+<mat-card>
+  <mat-card-title>Login</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="formLogin" (ngSubmit)="onLogin()">
+      <p>
+        <mat-form-field>
+          <input type="email" matInput placeholder="Email" formControlName="email" id="email">
+        </mat-form-field>
+      </p>
 
-    <h2 class="login-header">Log in</h2>
+      <p>
+        <mat-form-field>
+          <input type="password" matInput placeholder="Contraseña" formControlName="password" id="password">
+        </mat-form-field>
+      </p>
+      <p>
+        <a mat-button routerLink="/auth/signup" >Registrarme</a>
+      </p>
 
-    <form [formGroup]="formLogin" class="login-container">
-      <p><input formControlName="email" id="email" type="email" placeholder="Email"></p>
-      <p><input formControlName="password" id="password"  type="password" placeholder="Contraseña" required></p>
-      <p><input (click)="onLogin()" [disabled]="formLogin.invalid" type="button" value="Entrar"></p>
+      <div class="button">
+        <button type="submit" mat-button [disabled]="formLogin.invalid" color="accent">Entrar</button>
+      </div>
     </form>
-  </div>
-</div>
+  </mat-card-content>
+</mat-card>

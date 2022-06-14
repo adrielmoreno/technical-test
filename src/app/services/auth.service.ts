@@ -5,8 +5,6 @@ import { tap } from 'rxjs';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { IJwt } from '../models/ijwt.model';
 import { IUser } from '../models/iuser.model';
-import { IUsers } from '../models/iusers.model';
-
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +12,9 @@ import { IUsers } from '../models/iusers.model';
 export class AuthService {
 
   URL_AUTH: string = 'http://51.38.51.187:5050/api/v1/';
-  authSubject = new BehaviorSubject(false);
-  private token: string = '';
+  // authSubject = new BehaviorSubject(false);
+  private token: string | null = null
+  isLogin: boolean = false;
   constructor(private httpClient: HttpClient) { }
 
   signUp(user: IUser): Observable<any> {
@@ -29,14 +28,13 @@ export class AuthService {
   }
 
   logIn(user: IUser): Observable<IJwt> {
-    console.log(user)
     return this.httpClient.post<IJwt>(`${this.URL_AUTH}auth/log-in`, user).pipe(tap(
       (res: IJwt) => {
         if (res) {
           this.saveToken(res.accessToken, res.refreshToken, res.tokenType)
         }
       }
-    ))
+      ))
   }
 
   logOut(): void {
@@ -53,16 +51,11 @@ export class AuthService {
     this.token = token;
   }
 
-  // private getToken(): string | null {
-  //   if(!this.token){
-  //     this.token = localStorage.getItem("accessToken");
-  //   }
-  //   return this.token;
-  // }
-
-
-  getUsers():Observable<IUsers> {
-    return this.httpClient.get<IUsers>(`${this.URL_AUTH}users`, { headers: { 'Authorization': `${localStorage.getItem('tokenType')} ${localStorage.getItem('accessToken')}` } })
+   getToken(): string | null {
+    if(!this.token){
+      this.token = localStorage.getItem("accessToken") ?? null;
+    }
+    return this.token;
   }
 
 }

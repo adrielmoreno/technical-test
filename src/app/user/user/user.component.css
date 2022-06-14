@@ -1,0 +1,6 @@
+.example-card {
+  width: 150px;
+}
+mat-card-actions{
+  text-align: center;
+}

@@ -1,15 +1,33 @@
-<div class="container">
-  <div class="login">
-    <div class="login-triangle"></div>
+<mat-card>
+  <mat-card-title>{{regiEdit}}</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="formSignup" (ngSubmit)="onSignup()">
+      <p>
+        <mat-form-field>
+          <input formControlName="email" matInput id="email" type="email" placeholder="Email">
+        </mat-form-field>
+      </p>
 
-    <h2 class="login-header">Log in</h2>
+      <p>
+        <mat-form-field>
+          <input formControlName="password" matInput id="password"  type="password" placeholder="Contraseña">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input formControlName="name" matInput id="name"  type="text" placeholder="Nombre">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input formControlName="surname" matInput id="surname"  type="text" placeholder="Apellido">
+        </mat-form-field>
+      </p>
 
-    <form [formGroup]="formSignup" class="login-container">
-      <p><input formControlName="email" id="email" type="email" placeholder="Email"></p>
-      <p><input formControlName="password" id="password"  type="password" placeholder="Contraseña"></p>
-      <p><input formControlName="name" id="name"  type="text" placeholder="Nombre"></p>
-      <p><input formControlName="surname" id="surname"  type="text" placeholder="Apellido"></p>
-      <p><input (click)="onSignup()" [disabled]="formSignup.invalid" type="button" value="Registrase"></p>
+      <div class="button">
+        <button type="submit" mat-button [disabled]="formSignup.invalid" color="accent">{{regiEdit}}</button>
+      </div>
+
     </form>
-  </div>
-</div>
+  </mat-card-content>
+</mat-card>

@@ -1,1 +1,12 @@
-<p>user works!</p>
+<mat-card class="example-card">
+  <mat-card-title>{{user.name}}</mat-card-title>
+  <mat-card-content>
+    <p>{{user.name}} {{user.surname}}</p>
+    <a>{{user.email}}</a>
+  </mat-card-content>
+  <mat-divider inset></mat-divider>
+  <mat-card-actions>
+    <button mat-button color="accent" [routerLink]="['/auth/signup/', user.id]">Editar</button>
+    <button mat-button color="warn" (click)="onDeleteId()">Borrar</button>
+  </mat-card-actions>
+</mat-card>

@@ -1,12 +1,6 @@
+import { IUser } from "./iuser.model"
+
 export interface IUsers {
-  count: number
-  items: [
-    {
-      email: string
-      password: string
-      name: string
-      surname: string
-      id: string
-    }
-  ]
+  count: number,
+  items: [IUser]
 }
