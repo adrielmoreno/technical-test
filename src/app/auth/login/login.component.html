@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="login">
+    <div class="login-triangle"></div>
+
+    <h2 class="login-header">Log in</h2>
+
+    <form [formGroup]="formLogin" class="login-container">
+      <p><input formControlName="email" id="email" type="email" placeholder="Email"></p>
+      <p><input formControlName="password" id="password"  type="password" placeholder="Contraseña" required></p>
+      <p><input (click)="onLogin()" [disabled]="formLogin.invalid" type="button" value="Entrar"></p>
+    </form>
+  </div>
+</div>
